@@ -46,6 +46,8 @@ public class FungusGrower extends AgeableGrower {
 				material == Material.CRIMSON_FUNGUS ? TreeFeatures.CRIMSON_FUNGUS :
 				material == Material.WARPED_FUNGUS ? TreeFeatures.WARPED_FUNGUS :
 				material == Material.FLOWERING_AZALEA ? TreeFeatures.AZALEA_TREE :
+				material == Material.BROWN_MUSHROOM ? TreeFeatures.HUGE_BROWN_MUSHROOM :
+				material == Material.RED_MUSHROOM ? TreeFeatures.HUGE_RED_MUSHROOM :
 				null;
 		if (growth == null) {
 			return;
