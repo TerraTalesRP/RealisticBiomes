@@ -55,6 +55,7 @@ public class FungusGrower extends AgeableGrower {
 		final ServerLevel world = ((CraftWorld) block.getWorld()).getHandle();
 		final BlockPos position = new BlockPos(block.getX(), block.getY(), block.getZ());
 		//Taken from CraftWorld.generateTree()
+		block.setType(Material.AIR);
 		if (!growth.value().place(world, world.getChunkSource().getGenerator(), this.random, position)) {
 			block.setType(material);
 		}
