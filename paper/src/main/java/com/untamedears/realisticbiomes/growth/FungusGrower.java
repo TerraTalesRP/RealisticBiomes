@@ -1,14 +1,19 @@
 package com.untamedears.realisticbiomes.growth;
 
 import com.untamedears.realisticbiomes.model.Plant;
-import java.util.Random;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Holder;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.worldgen.features.TreeFeatures;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import org.bukkit.Material;
 import org.bukkit.TreeType;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.v1_18_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R3.CraftWorld;
+import org.bukkit.craftbukkit.v1_19_R3.util.RandomSourceWrapper;
+
+import java.util.Random;
 
 /**
  * We need to differentiate fungus from other types of saplings thanks
@@ -52,8 +57,12 @@ public class FungusGrower extends AgeableGrower {
 		}
 		final ServerLevel world = ((CraftWorld) block.getWorld()).getHandle();
 		final BlockPos position = new BlockPos(block.getX(), block.getY(), block.getZ());
-		//Taken from CraftWorld.generateTree()
-		if (!growth.value().place(world, world.getChunkSource().getGenerator(), this.random, position)) {
+		//Taken from CraftRegionAccessor.generateTree()
+		Holder<ConfiguredFeature<?, ?>> holder = world.registryAccess().registryOrThrow(Registries.CONFIGURED_FEATURE).getHolder(growth).orElse(null);
+		if (holder == null) {
+			return false;
+		}
+		if (!holder.value().place(world, world.getChunkSource().getGenerator(), new RandomSourceWrapper(this.random), position)) {
 			block.setType(material);
 		}
 		return true;
