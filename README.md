@@ -3,6 +3,9 @@ RealisticBiomes
 
 ![Illustration](http://i.imgur.com/sInZHEN.jpg)
 
+## Changes with 1.19.4
+Added Mangrove Support, Cherry Trees are not supported at this time though will eventually be supported in the future. This is an **experimental** version and as such it does contain bugs including some lag issues that are yet to be patched.
+
 ## Changes with 1.16.5
 RealisticBiomes underwent a refactor and partial conversion to 1.16.5. It does not currently support controlling animal reproduction and no longer supports altering fishing loot tables. 
 
